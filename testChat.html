@@ -1,0 +1,78 @@
+<head>
+  <title>testChat</title>
+</head>
+
+<body>
+  <div class="row">
+  	{{> room}}
+  	{{renderPage}}
+   </div>
+</body>
+
+<template name="home">
+  <div class="span6">
+    <h1>Welcome to Meteor Chat</h1>
+    <p>Please a select a room to chat in, or create a new one</p>
+  </div>
+</template>
+
+<template name="room">
+	<table>
+		{{#each rooms}}
+		<tr>
+			<td><a class="goToRoom" href="#">{{name}}</a></td>
+			<td>{{members}}</td>
+			<td>{{last_activity}}</td>
+		</tr>
+		{{/each}}
+		
+		 <tr>
+          <td colspan="3">
+            <input type="text" id="chatRoomName" placeholder="Enter your chatroom name"></input>
+            <button type="submit" class="createRoom">
+               Create Room
+            </button>
+          </td>
+        </tr>
+        
+	</table>
+</template>
+
+<template name="chatRoom">
+<h1> You are in chat room {{id}} </h1>
+</template>
+
+<template name="chatRoom2">
+  <div class="span6">
+  		{{#with room}}
+      <h1>Welcome to {{name}}</h1></p>
+      <table id="chat" class="table table-striped">
+        <tbody>
+          {{#each messages}}
+            <tr>
+              <td>{{author}} :</td>
+              <td>{{text}}</td>
+            </tr>
+          {{/each}}
+          <tr>
+            <td colspan="2">
+             <form name="new_author">
+              Author: <input type="text" id="authorName"></input>
+              </form>
+              </td>
+           </tr>
+           <tr>
+           <td colspan="2">
+              <form name="new_message">
+                Message: <input type="text" id="the_message"></input>
+                <button type="submit" class="sendMessage">
+                 Send message
+                </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      {{/with}}
+  </div>
+</template>
